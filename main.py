@@ -8,42 +8,42 @@ from time import strftime, gmtime, time, sleep
 class TikTok:
     def __init__(self):
 
-        print("  _________.__                                  ___.           __ ")
-        print(" /   _____/|  |__ _____ _______   ____   ______ \_ |__   _____/  |_ ")
-        print(" \_____  \ |  |  \\__  \\_  __ \_/ __ \ /  ___/  | __ \ /  _ \   __\ ")
-        print(" /        \|   Y  \/ __ \|  | \/\  ___/ \___ \   | \_\ (  <_> )  |  ")
-        print("/_______  /|___|  (____  /__|    \___  >____  >  |___  /\____/|__|  ")
-        print("        \/      \/     \/            \/     \/       \/      ")
+        print("  _____________  __.___________ ")   
+        print(" /   _____/    |/ _|   \______ \  ")  
+        print(" \_____  \|      < |   ||    |  \  ")
+        print(" /        \    |  \|   ||    `   \ ")
+        print("/_______  /____|__ \___/_______  / ")
+        print("        \/        \/           \/  ")
 
         self.added = 0
         self.lock = threading.Lock()
 
         try:
-            self.amount = int(input('> Enter the Amount of shares desired: '))
+            self.amount = int(input(> Enter the Amount of shares desired: ))
         except ValueError:
-            self.close('Value error, expected an integer')
+            self.close(Value error, expected an integer)
 
         try:
-            self.video_id = input('> TikTok Video URL: ').split('/')[5]
+            self.video_id = input(> TikTok Video URL: ).split(/)[5]
         except IndexError:
             self.close(
-                'Invalid TikTok URL format.\nFormat expected: https://www.tiktok.com/@username/vide'
-                'o/1234567891234567891'
+                Invalid TikTok URL format.\nFormat expected: https://www.tiktok.com/@username/vide
+                o/1234567891234567891
             )
         else:
             if not self.video_id.isdigit():
                 self.close(
-                    'Invalid TikTok URL format.\nFormat expected: https://www.tiktok.com/@username/'
-                    'video/1234567891234567891'
+                    Invalid TikTok URL format.\nFormat expected: https://www.tiktok.com/@username/
+                    video/1234567891234567891
                 )
             else:
                 print()
 
     def close(self, message):
-        print('\n{message}')
-        os.system("title skidperls's TikTok SharesBot - Restart required")
-        os.system('pause >NUL')
-        os.system("title skidperls's TikTok SharesBot - Closing...")
+        print(\n{message})
+        os.system("title skidperlss TikTok SharesBot - Restart required")
+        os.system(pause >NUL)
+        os.system("title skidperlss TikTok SharesBot - Closing...")
         sleep(3)
         os._exit(0)
 
@@ -52,7 +52,7 @@ class TikTok:
             self.added += 1
         else:
             self.lock.acquire()
-            print('Error: {intention} | Status Code: {code}')
+            print(Error: {intention} | Status Code: {code})
             self.lock.release()
             self.bot()
 
@@ -64,51 +64,51 @@ class TikTok:
         while self.added < self.amount:
             # Elapsed Time / Added * Remaining
             time_remaining = strftime(
-                '%H:%M:%S', gmtime(
+                %H:%M:%S, gmtime(
                     (time() - self.start_time) / self.added * (self.amount - self.added)
                 )
             )
             os.system(
-                "title skidperls's TikTok SharesBot - Added: {self.added} Shares/{self.amount} Shares "
-                '({round(((self.added / self.amount) * 100), 3)}%) ^| Active Threads: '
-                '{threading.active_count()} ^| Time Remaining: {time_remaining}'
+                "title skidperlss TikTok SharesBot - Added: {self.added} Shares/{self.amount} Shares "
+                f({round(((self.added / self.amount) * 100), 3)}%) ^| Active Threads: 
+                f{threading.active_count()} ^| Time Remaining: {time_remaining}
             )
             sleep(0.2)
         os.system(
-            "title skidperls's TikTok SharesBot - Added: {self.added}/{self.amount} "
-            '({round(((self.added / self.amount) * 100), 3)}%) ^| Active Threads: '
-            '{threading.active_count()} ^| Time Remaining: 00:00:00'
+            f"title skidperlss TikTok SharesBot - Added: {self.added}/{self.amount} "
+            f({round(((self.added / self.amount) * 100), 3)}%) ^| Active Threads: 
+            f{threading.active_count()} ^| Time Remaining: 00:00:00
         )
 
     def bot(self):
         
         if self.added > 0:
-            print("{self.added} Shares have been added! Enjoy!")
+            print(f"{self.added} Shares have been added! Enjoy!")
             
         action_time = round(time())
-        device_id = ''.join(random.choice('0123456789') for _ in range(19))
+        device_id = .join(random.choice(0123456789) for _ in range(19))
 
         data = (
-            'action_time={action_time}&item_id={self.video_id}&item_type=1&share_delta=1&stats_channel=copy'
+            faction_time={action_time}&item_id={self.video_id}&item_type=1&share_delta=1&stats_channel=copy
         )
         headers = {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'x-common-params-v2': 'version_code=16.6.5&app_name=musical_ly&channel=App%20Store&devi'
-                                  f'ce_id={device_id}&aid=1233&os_version=13.5.1&device_platform=ip'
-                                  'hone&device_type=iPhone10,5',
-            'User-Agent': 'TikTok 16.6.5 rv:166515 (iPhone; iOS 13.6; en_US) Cronet',
+            Content-Type: application/x-www-form-urlencoded,
+            x-common-params-v2: version_code=16.6.5&app_name=musical_ly&channel=App%20Store&devi
+                                  fce_id={device_id}&aid=1233&os_version=13.5.1&device_platform=ip
+                                  hone&device_type=iPhone10,5,
+            User-Agent: TikTok 16.6.5 rv:166515 (iPhone; iOS 13.6; en_US) Cronet,
         }
 
         try:
             response = requests.post(
-                'https://api16-core-c-useast1a.tiktokv.com/aweme/v1/aweme/stats/?ac=WIFI&op_region='
-                'SE&app_skin=white&', data=data, headers=headers
+                https://api16-core-c-useast1a.tiktokv.com/aweme/v1/aweme/stats/?ac=WIFI&op_region=
+                SE&app_skin=white&, data=data, headers=headers
             )
         except Exception as e:
-            print(f'Error: {e}')
+            print(fError: {e})
             self.bot()
         else:
-            if all(i not in response.text for i in ['Service Unavailable', 'Gateway Timeout']):
+            if all(i not in response.text for i in [Service Unavailable, Gateway Timeout]):
                 self.status(response.status_code, response.text)
             else:
                 self.bot()
@@ -123,12 +123,12 @@ class TikTok:
                     threading.Thread(target=self.bot).start()
                     break
 
-        os.system('pause >NUL')
-        os.system("title Skidperl's TikTok SharesBot - Closing...")
+        os.system(pause >NUL)
+        os.system("title Skidperls TikTok SharesBot - Closing...")
         sleep(3)
 
 
-if __name__ == '__main__':
-    os.system("cls && title skidperl's TikTok SharesBot")
+if __name__ == __main__:
+    os.system("cls && title skidperls TikTok SharesBot")
     main = TikTok()
     main.start()
